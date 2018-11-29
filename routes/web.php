@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::post('/Tic', 'TrabajoController@guardar');
+//Route::post('/Tic', ['as'=>'Tic', 'uses'=>'TrabajoController@guardar', 'middleware'=>'no_csrf']);
