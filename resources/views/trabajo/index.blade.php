@@ -6,6 +6,7 @@
       <td> Unidad </td>
       <td> Bien </td>
       <td> Trabajo </td>
+      <td> Foto </td>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,9 @@
         <td>{{$dato->unidad}}</td>
         <td>{{$dato->codBienes}}</td>
         <td>{{$dato->trabajo}}</td>
+        <td>
+          <img src="data:image/png;base64,{{$dato->firma}}" alt="">
+        </td>
       </tr>
     @endforeach
   </tbody>
