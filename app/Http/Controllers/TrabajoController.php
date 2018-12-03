@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Trabajo;
 class TrabajoController extends Controller
 {
+
+    public function index(){
+      $datos = Trabajo::all();
+      return view('trabajo.index', compact('datos'));
+    }
+
     public function guardar(Request $request){
       $datos = json_decode($request->cadena);
       $dato = new Trabajo;

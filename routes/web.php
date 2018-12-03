@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 
 Route::post('/Tic', 'TrabajoController@guardar');
-//Route::post('/Tic', ['as'=>'Tic', 'uses'=>'TrabajoController@guardar', 'middleware'=>'no_csrf']);
+Route::get('/Tic', 'TrabajoController@index');
