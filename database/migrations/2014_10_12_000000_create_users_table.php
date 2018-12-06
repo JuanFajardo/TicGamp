@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('ci');
             $table->string('cargo');
 
-            $table->rememberToken();
             $table->timestamps();
 
         });
