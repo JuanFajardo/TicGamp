@@ -14,11 +14,14 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('password');
 
+            $table->string('titulo');
             $table->string('nombre');
             $table->string('paterno');
             $table->string('materno');
             $table->string('ci');
+            $table->string('imei');
             $table->string('cargo');
+            $table->integer('grupo');
 
             $table->timestamps();
 

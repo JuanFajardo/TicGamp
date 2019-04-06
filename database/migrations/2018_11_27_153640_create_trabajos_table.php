@@ -16,7 +16,7 @@ class CreateTrabajosTable extends Migration
             $table->string('unidad');
             $table->string('codBienes');
             $table->string('trabajo');
-            $table->string('fecha');
+            $table->dateTime('fecha');
             $table->longText('firma');
             $table->string('sincro');
             $table->timestamps();
