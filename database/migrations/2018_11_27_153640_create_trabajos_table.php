@@ -19,6 +19,14 @@ class CreateTrabajosTable extends Migration
             $table->dateTime('fecha');
             $table->longText('firma');
             $table->string('sincro');
+
+            $table->string('asignadoA')->comment('nombre');
+            $table->string('asignadoPor')->comment('nombre');
+            
+            $table->string('observacion');
+            $table->string('estado')->comment('entregado/visto/normal/complicado/terminado');
+            $table->integer('id_user');
+
             $table->timestamps();
         });
     }

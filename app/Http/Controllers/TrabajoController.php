@@ -9,11 +9,6 @@ use Carbon\Carbon;
 class TrabajoController extends Controller
 {
 
-    public function index(){
-      $datos = Trabajo::all();
-      return view('trabajo.index', compact('datos'));
-    }
-
     public function guardar(Request $request){
       $datos = json_decode($request->cadena);
       $dato = new Trabajo;
@@ -30,27 +25,61 @@ class TrabajoController extends Controller
       return array(array("respuesta"=>"true"));
     }
 
-    public function reporte(Request $request){
-      $vista = "";
-      if ($request->boton  == "Reporte Mensual"){
-        $vista = "trabajo.reporteMensual";
-      }elseif ($request->boton  == "Reporte Semanal"){
-        $vista = "trabajo.reporteSemanal";
+    public function index(){
+      $datos = Trabajo::all();
+      return view('trabajo.index', compact('datos'));
+    }
+
+    public function store(Request $request){
+      //return $request->all();
+      $request["usuario"] = \Auth::user()->username;
+      $request["id_user"] = \Auth::user()->id;
+      $request["firma"]   = "no";
+      $request["sincro"]  = "SI";
+      $request["estado"]  = "entregado";
+      if(\Auth::user()->grupo != "2"){
+        $request["asignadoA"]  = \Auth::user()->username;
+        $request["asignadoPor"]  = \Auth::user()->username;
+
       }else{
-        $vista = "trabajo.reporteMensual";
+        $request["asignadoA"]   = \Auth::user()->username;
+        $request["asignadoPor"] = \Auth::user()->username;
       }
 
-      $inicio = $request->fecha_inicio;
-      $fin = $request->fecha_fin;
-/*
-      $datos = \DB::table('trabajos')->where('fecha', '>=', Carbon::parse($inicio)->format('Y-m-d') )
-                                     ->where('fecha', '<=', Carbon::parse($fin)->format('Y-m-d')    )->get();
-*/
-      $datos = \DB::table('trabajos')->where('created_at', '>=', Carbon::parse($inicio)->format('Y-m-d') )
-                                     ->where('created_at', '<=', Carbon::parse($fin)->format('Y-m-d')    )->get();
-      //return $datos[0]->usuario;
-      return view($vista, compact('datos', 'inicio', 'fin'));
+      $dato = new Trabajo;
+      $dato->fill( $request->all() );
+      $dato->save();
 
+      return redirect('/Trabajo');
     }
+
+    public function show($id){
+      $datos = Trabajo::Where('id', '=', $id)->get();
+      return $datos;
+    }
+
+    public function update(Request $request, $id){
+
+      $request["user_recogio"]    = \Auth::user()->username;
+
+      $dato = Trabajo::find($id);
+      $dato->fecha_devolucion = $request->fecha_devolucion;
+      $dato->detalle          = $request->detalle;
+      $dato->user_recogio     = $request->user_recogio;
+      $dato->id_user          = \Auth::user()->id;
+      $dato->save();
+      return redirect('/Prestamo');
+    }
+
+    public function destroy(Request $request, $id){
+      if( $request->ajax() ){
+        $dato = Trabajo::find($id);
+        $dato->delete();
+        return "Trabajo Eliminado";
+      }else{
+        return redirect('/Trabajo');
+      }
+    }
+
 
 }

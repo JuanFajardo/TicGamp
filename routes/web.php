@@ -8,21 +8,23 @@ Route::get('/', function () {
 });
 
 
+
+//Modulo del Modulo de Trabajo
+Route::resource('/Trabajo', 'TrabajoController');
 Route::post('/Tic', 'TrabajoController@guardar')->name('post.tic');
-Route::get('/Tic', 'TrabajoController@index')->name('get.tic');
 
-
-
+//Ruta del Modulo de Prestamo
 Route::resource('/Prestamo', 'PrestamoController');
 
-Route::post('/Reporte', 'TrabajoController@reporte')->name('post.reporte');
+//Reportes  y todo referente a exportar PDF
+Route::get('/Reporte', 'ReporteController@index')->name('get.reporte');
+Route::post('/Reporte', 'ReporteController@reporte')->name('post.reporte');
 Route::get('/Reporte/acta/{id}', 'ReporteController@reporteActa')->name('get.reporteActa');
 
 //Inisio de Session
 Route::get('/login', 'Auth\LoginController@showLoginForm');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
-
 
 // Administracion de Usuarios
 Route::get('usuarios', 'UsuarioController@index');

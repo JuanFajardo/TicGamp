@@ -33,7 +33,7 @@ class PrestamoController extends Controller
     $dato->codigo_bien    = $request->codigo_bien;
     $dato->detalle        = $request->detalle;
     $dato->id_user        = $request->id_user;
-    $dato->user_presto    = $request->id_user;
+    $dato->user_presto    = $request->user_presto;
     $dato->user_recogio   = "";
     $dato->save();
 

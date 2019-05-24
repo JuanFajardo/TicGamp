@@ -25,9 +25,6 @@
       <div class="modal-body panel-body">
         {!! Form::open(['accept-charset'=>'UTF-8', 'enctype'=>'multipart/form-data', 'method'=>'POST', 'files'=>true, 'autocomplete'=>'off', 'id'=>'form-insert'] ) !!}
 
-
-
-
         <div class="row">
           <div class="col-md-6">
             <label for="responsable_" > <b><i>Responsable</i></b> </label>
@@ -126,11 +123,7 @@
 
 
 @section('cuerpo')
-@if( \Session::get('clave') == "OK" )
-  <script type="text/javascript">
-    alert("La contraseña se actualizo correctamente");
-  </script>
-@endif
+
 <table id="tablaGamp" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
   <thead>
     <tr>
