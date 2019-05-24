@@ -1,56 +1,46 @@
-@extends('layouts.angular')
+@extends('gamp')
 
-@section('etiquetaTitle')
-SISFA - Usuarios
+@section('title') Usuario @endsection
+@section('ventana') Usuario @endsection
+
+@section('descripcion') por nombre, paterno, materno y ci @endsection
+@section('titulo')
+<a href="{{asset('index.php/usuarios')}}" class="btn btn-primary"> <i class="fa fa-user"></i> Volver </a>
+<a href="{{url('usuarios/create')}}" class="btn btn-info " data-target=""> <li class="fa fa-plus"></li> Nuevo </a>
 @endsection
 
-@section('usuarios')
-active
+@section('menuUsuario')
+ class="active-menu"
 @endsection
 
-@section('contenido')
-<div class="container">
-<div class="row">
-    <div class="col-md-10">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Usuarios</h3>
-                <a href="{{url('usuarios/create')}}" class="btn  btn-info pull-right">Nuevo <i class="fa fa-plus"></i></a>
-            </div>
-            <div class="panel-body">
-                <table id="datosTabla" class="table datatable">
-                    <thead>
-                        <tr>
-                            <th>Nombres y Apellidos</th>
-                            <th>Usuario</th>
-                            <th>Correo</th>
-                            <th>Grupo</th>
-                            <th>Estado</th>
-                            <th>Ver</th>
-                            <th>Editar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       @foreach($usuarios as $usuario)
-                        <tr>
-                            <td>{{$usuario->nombres}} {{$usuario->apellidos}}</td>
-                            <td>{{$usuario->name}}</td>
-                            <td>{{$usuario->email}}</td>
-                            <td> @if( $usuario->grupo_id == 1 ) Administrador @elseif( $usuario->grupo_id == 2 ) Contador  @elseif( $usuario->grupo_id == 3 ) Reportes @endif</td>
-                            <td> @if ($usuario->estado)  <span class="label label-success">Activo</span> @else <span class="label label-danger">Inactivo</span> @endif</td>
-                            <td><a href="{{ url('usuarios/'.$usuario->id) }}">  <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
-                            <td><a href="{{ url('usuarios/'.$usuario->id.'/edit') }}" style="color:#f0ad4e;"> <i class="fa fa-pencil" aria-hidden="true"></i>  </a></td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+@section('cuerpo')
 
-<div id="myModal" class="modal fade" role="dialog">
+  <table id="datosTabla" class="table datatable">
+    <thead>
+      <tr>
+        <th>Nombres y Apellidos</th>
+        <th>Usuario</th>
+        <th>Unidad / Cargo</th>
+        <th>Grupo</th>
+        <th>imei</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($usuarios as $usuario)
+      <tr>
+        <td>{{$usuario->nombre}} {{$usuario->paterno}} {{$usuario->materno}}</td>
+        <td>{{$usuario->username}}</td>
+        <td>{{$usuario->unidad}} / {{$usuario->cargo}}</td>
+        <td>{{$usuario->grupo}}</td>
+        <td>{{$usuario->imei}}</td>
+        <td><a href="{{ url('usuarios/'.$usuario->id.'/edit') }}" style="color:#f0ad4e;"> <i class="fa fa-pencil" aria-hidden="true"></i>  </a></td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+
+<!--<div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,10 +63,10 @@ active
       </div>
     </div>
   </div>
-</div>
+</div>-->
 @endsection
 
-@section('angular')
+@section('js')
 <script type="text/javascript">
   $('#datosTabla').DataTable({
       "order": [[ 0, 'asc']],

@@ -1,4 +1,4 @@
-@extends('layouts.angular')
+@extends('gamp')
 @section('info')
 active
 @endsection

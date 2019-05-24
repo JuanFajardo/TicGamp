@@ -14,6 +14,11 @@
             <li>
                 <a @yield('menuReporte') href="{{asset('index.php/Reporte')}}"><i class="fa fa-file"></i> Resportes</a>
             </li>
+
+            <li>
+                <a @yield('menuUsuario') href="{{asset('index.php/usuarios')}}"><i class="fa fa-user"></i> Usuarios</a>
+            </li>
+
         </ul>
     </div>
 </nav>

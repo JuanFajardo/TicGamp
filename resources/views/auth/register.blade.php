@@ -1,147 +1,138 @@
-@extends('layouts.angular')
+@extends('gamp')
 
-@section('contenido')
-<div class="container">
-  <div class="row">
-      <div class="col-md-10">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 class="panel-title"><strong>Nuevo  usuario</strong> </h3>
-              </div>
-              <div class="panel-body">
-                {!! Form::open(['action'=>'UsuarioController@create', 'method'=>'POST', 'id'=>'form-create', 'class'=>'form-horizontal', 'role'=>'form', 'autocomplete'=>'off' ])!!}
-                  <h4>Datos de usuario</h4>
-                  <hr>
-                  <div class="form-group">
-                      <label for="name" class="col-md-4 control-label">Grupo</label>
-                      <div class="col-md-6">
-                        {!! Form::select('grupo_id', ['1'=>'Administrador de Sistemas', '2'=>'Administración Clinica', '3'=>'Contabilidad'], null, ['id'=>'grupo_id', 'class'=>'form-control']) !!}
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                      <label for="name" class="col-md-4 control-label">Usuario</label>
-                      <div class="col-md-6">
-                          {!! Form::text('name',  old('name'), ['id'=>'name', 'class'=>'form-control', 'placeholder'=>'nombre y apellidos']) !!}
-                          @if ($errors->has('name'))
-                              <span class="help-block">{{ $errors->first('name') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                      <label for="email" class="col-md-4 control-label">Correo electrónico</label>
-                      <div class="col-md-6">
-                          {!! Form::email('email',  old('email'), ['id'=>'email', 'class'=>'form-control', 'placeholder'=>'correo@correo.com']) !!}
-                          @if ($errors->has('email'))
-                              <span class="help-block">{{ $errors->first('email') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                      <label for="password" class="col-md-4 control-label">Contraseña</label>
-                      <div class="col-md-6">
-                          {!! Form::password('password', ['id'=>'password', 'class'=>'form-control', 'placeholder'=>'Clave s3cr3t4']) !!}
-                          @if ($errors->has('password'))
-                              <span class="help-block">{{ $errors->first('password') }}</span>
-                          @endif
-                      </div>
-                  </div>
+@section('title') Usuario @endsection
+@section('ventana') Usuario @endsection
 
-                  <h4>Datos de personales</h4>
-                  <hr>
-                  <div class="form-group{{ $errors->has('nombres') ? ' has-error' : '' }}">
-                      <label for="nombres" class="col-md-4 control-label upper">Nombres</label>
-                      <div class="col-md-6">
-                          {!! Form::text('nombres',  old('nombres'), ['id'=>'nombres', 'class'=>'form-control', 'placeholder'=>'Ingrese sus nombres']) !!}
-                          @if ($errors->has('nombres'))
-                              <span class="help-block">{{ $errors->first('nombres') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('apellidos') ? ' has-error' : '' }}">
-                      <label for="apellidos" class="col-md-4 control-label upper">Apellidos</label>
-                      <div class="col-md-6">
-                          {!! Form::text('apellidos',  old('apellidos'), ['id'=>'apellidos', 'class'=>'form-control', 'placeholder'=>'Ingrese sus apellidos']) !!}
-                          @if ($errors->has('apellidos'))
-                              <span class="help-block">{{ $errors->first('apellidos') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('ci') ? ' has-error' : '' }}">
-                      <label for="ci" class="col-md-4 control-label">Cédula de identidad</label>
-                      <div class="col-md-6">
-                          {!! Form::text('ci',  old('ci'), ['id'=>'ci', 'class'=>'form-control', 'placeholder'=>'Cédula de identidad']) !!}
-                          @if ($errors->has('ci'))
-                              <span class="help-block">{{ $errors->first('ci') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
-                      <label for="direccion" class="col-md-4 control-label upper">Dirección</label>
-                      <div class="col-md-6">
-                          {!! Form::text('direccion',  old('direccion'), ['id'=>'direccion', 'class'=>'form-control', 'placeholder'=>'Dirección de residencia']) !!}
-                          @if ($errors->has('direccion'))
-                              <span class="help-block">{{ $errors->first('direccion') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
-                      <label for="telefono" class="col-md-4 control-label">Teléfono</label>
-                      <div class="col-md-6">
-                          {!! Form::text('telefono',  old('telefono'), ['id'=>'telefono', 'class'=>'form-control', 'placeholder'=>'Número de teléfono']) !!}
-                          @if ($errors->has('telefono'))
-                              <span class="help-block">{{ $errors->first('telefono') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('observacion') ? ' has-error' : '' }}">
-                      <label for="observacion" class="col-md-4 control-label upper">Cargo</label>
-                      <div class="col-md-6">
-                          {!! Form::text('observacion',  old('observacion'), ['id'=>'observacion', 'class'=>'form-control', 'placeholder'=>'Observación del usuario', 'list'=>'observacion-list']) !!}
-                          <datalist id="observacion-list">
-                            <option value="ADMINISTRADORA DE CLINICA">
-                            <option value="AUX. DE ADM. CLINICA">
-                            <option value="AUX. CONTABLE DE CLINICA">
-                            <option value="AUX. ENFERMERA DE CLINICA">
-                            <option value="CONTADOR">
-                            <option value="ENFERMERA DE CLINICA">
-                            <option value="FARMACEUTICO DE CLINICA">
-                            <option value="LABORATORISTA DE CLINICA">
-                            <option value="ADMINISTRADOR DE SISTEMAS">
-                          </datalist>
-                          @if ($errors->has('observacion'))
-                              <span class="help-block">{{ $errors->first('observacion') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
-                      <label for="estado" class="col-md-4 control-label">Estado</label>
-                      <div class="col-md-6">
-                          {!! Form::checkbox('estado', 'on', true, ['id'=>'estado', 'class'=>'form-control']) !!}
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="col-md-6 col-md-offset-4">
-                          <button type="submit" class="btn btn-primary">
-                              <i class="fa fa-btn fa-user"></i> Nuevo
-                          </button>
-                          <a href="{{asset('/usuarios')}}" class="btn btn-primary">
-                            <i class="fa fa-btn fa-times-circle"></i> Cancelar</a>
-                      </div>
-                  </div>
-          {!! Form::close() !!}
-      </div>
+@section('descripcion') creacion de un nuevo usuario @endsection
+
+@section('titulo')
+ <a href="{{asset('index.php/usuarios')}}" class="btn btn-primary"> <i class="fa fa-user"></i> Volver </a>
+@endsection
+
+@section('menuUsuario')
+ class="active-menu"
+@endsection
+
+@section('cuerpo')
+
+
+
+<form class="form-horizontal" method="POST" action="{{ route('usuarios') }}">
+{{ csrf_field() }}
+
+  <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+    <label for="nombre" class="col-md-4 control-label">Nombres </label>
+    <div class="col-md-6">
+      <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required>
     </div>
   </div>
-</div>
-@endsection
-@section('javascripts')
-<script src="assets/js/plugins/solotexto.js"></script>
-<script src="assets/js/plugins/sincaracter.js"></script>
-<script>
-  $('.upper').on('input', function(evt) {
-    $(this).val(function (_, val) {
-      return val.toUpperCase();
-    });
-  });
-</script>
+
+  <div class="form-group{{ $errors->has('paterno') ? ' has-error' : '' }}">
+    <label for="paterno" class="col-md-4 control-label">Ap. Paterno </label>
+    <div class="col-md-6">
+      <input id="paterno" type="text" class="form-control" name="paterno" value="{{ old('paterno') }}" required>
+    </div>
+  </div>
+
+  <div class="form-group{{ $errors->has('materno') ? ' has-error' : '' }}">
+    <label for="materno" class="col-md-4 control-label">Ap. Materno </label>
+    <div class="col-md-6">
+      <input id="materno" type="text" class="form-control" name="materno" value="{{ old('materno') }}" required>
+    </div>
+  </div>
+
+  <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+    <label for="name" class="col-md-4 control-label">Nombre de Usuario </label>
+    <div class="col-md-6">
+      <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+      @if ($errors->has('username'))
+      <span class="help-block">
+        <strong>{{ $errors->first('username') }}</strong>
+      </span>
+      @endif
+    </div>
+  </div>
+
+  <div class="form-group{{ $errors->has('ci') ? ' has-error' : '' }}">
+    <label for="name" class="col-md-4 control-label">Carnet de Identidad </label>
+    <div class="col-md-6">
+      <input id="ci" type="text" class="form-control" name="ci" value="{{ old('ci') }}" required autofocus>
+      @if ($errors->has('ci'))
+      <span class="help-block">
+        <strong>{{ $errors->first('ci') }}</strong>
+      </span>
+      @endif
+    </div>
+  </div>
+
+  <div class="form-group{{ $errors->has('imei') ? ' has-error' : '' }}">
+    <label for="name" class="col-md-4 control-label">NRO IMEI </label>
+    <div class="col-md-6">
+      <input id="imei" type="text" class="form-control" name="imei" value="{{ old('imei') }}" required autofocus>
+      @if ($errors->has('imei'))
+      <span class="help-block">
+        <strong>{{ $errors->first('imei') }}</strong>
+      </span>
+      @endif
+    </div>
+  </div>
+
+  <div class="form-group{{ $errors->has('unidad') ? ' has-error' : '' }}">
+    <label for="unidad" class="col-md-4 control-label">Unidad </label>
+    <div class="col-md-6">
+      <input id="unidad" type="text" class="form-control" name="unidad" value="{{ old('unidad') }}" required>
+    </div>
+  </div>
+
+  <div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
+    <label for="cargo" class="col-md-4 control-label">Cargo </label>
+    <div class="col-md-6">
+      <input id="cargo" type="text" class="form-control" name="cargo" value="{{ old('cargo') }}" required>
+    </div>
+  </div>
+
+
+  <div class="form-group{{ $errors->has('grupo') ? ' has-error' : '' }}">
+    <label for="grupo" class="col-md-4 control-label">Grupo</label>
+    <div class="col-md-6">
+      <select name="grupo" id="grupo">
+        <option value="1">Administrador</option>
+        <option value="2">Resposable</option>
+        <option value="3">Usuario</option>
+        <option value="4">Reportes</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+    <label for="password" class="col-md-4 control-label">Password</label>
+    <div class="col-md-6">
+      <input id="password" type="password" class="form-control" name="password" required>
+      @if ($errors->has('password'))
+      <span class="help-block">
+        <strong>{{ $errors->first('password') }}</strong>
+      </span>
+      @endif
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+    <div class="col-md-6">
+      <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <div class="col-md-6 col-md-offset-4">
+          <button type="submit" class="btn btn-primary">
+              <i class="fa fa-btn fa-user"></i> Registrar
+          </button>
+          <a href="{{asset('/index.php/usuarios')}}" class="btn btn-warning">
+            <i class="fa fa-btn fa-times-circle"></i> Cancelar</a>
+      </div>
+  </div>
+
+</form>
 @endsection

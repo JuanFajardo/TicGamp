@@ -1,38 +1,102 @@
-@extends('layouts.angular')
+@extends('gamp')
 
-@section('contenido')
-<div class="container">
-  <div class="row">
-      <div class="col-md-10">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 class="panel-title"><strong>Editar  usuario</strong> </h3>
-              </div>
-              <div class="panel-body">
-                {!! Form::model($user, ['action'=>['UsuarioController@update', $user->id], 'method'=>'PATCH', 'id'=>'form-create', 'class'=>'form-horizontal', 'role'=>'form', 'autocomplete'=>'off'  ])!!}
-                  <h4>Datos de usuario</h4>
-                  <hr>
-                  <div class="form-group">
-                      <label for="name" class="col-md-4 control-label">Grupo</label>
+@section('title') Usuarios @endsection
+
+@section('ventana') Usuarios
+@endsection
+@section('descripcion') editar usuario @endsection
+@section('titulo')
+   <a href="{{asset('index.php/usuarios')}}" class="btn btn-primary"> <i class="fa fa-user"></i> Volver </a>
+   <a href="{{url('usuarios/create')}}" class="btn btn-info " data-target=""> <li class="fa fa-plus"></li> Nuevo </a>
+@endsection
+
+@section('menuUsuario')
+ class="active-menu"
+@endsection
+
+
+@section('cuerpo')
+{!! Form::model($user, ['action'=>['UsuarioController@update', $user->id], 'method'=>'PATCH', 'id'=>'form-create', 'class'=>'form-horizontal', 'role'=>'form', 'autocomplete'=>'off'  ])!!}
+  <h4>Datos de usuario</h4>
+  <hr>
+  <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+    <label for="name" class="col-md-4 control-label">Nombres</label>
+    <div class="col-md-6">
+      {!! Form::text('nombre',  old('nombre'), ['id'=>'nombre', 'class'=>'form-control', 'placeholder'=>'Nombres']) !!}
+      @if ($errors->has('name'))
+        <span class="help-block">{{ $errors->first('nombre') }}</span>
+      @endif
+    </div>
+  </div>
+  <div class="form-group{{ $errors->has('paterno') ? ' has-error' : '' }}">
+    <label for="name" class="col-md-4 control-label">Ap. Paterno</label>
+    <div class="col-md-6">
+      {!! Form::text('paterno',  old('paterno'), ['id'=>'paterno', 'class'=>'form-control', 'placeholder'=>'Ap. Paterno']) !!}
+      @if ($errors->has('paterno'))
+        <span class="help-block">{{ $errors->first('paterno') }}</span>
+      @endif
+    </div>
+  </div>
+  <div class="form-group{{ $errors->has('materno') ? ' has-error' : '' }}">
+    <label for="materno" class="col-md-4 control-label">Ap. Materno</label>
+    <div class="col-md-6">
+      {!! Form::text('materno',  old('materno'), ['id'=>'materno', 'class'=>'form-control', 'placeholder'=>'Ap. Materno']) !!}
+      @if ($errors->has('materno'))
+        <span class="help-block">{{ $errors->first('materno') }}</span>
+      @endif
+    </div>
+  </div>
+
+
+  <div class="form-group{{ $errors->has('ci') ? ' has-error' : '' }}">
+    <label for="name" class="col-md-4 control-label">Carnet de Identidad</label>
+    <div class="col-md-6">
+      {!! Form::text('ci',  old('ci'), ['id'=>'ci', 'class'=>'form-control', 'placeholder'=>'Carnet de Identidad']) !!}
+      @if ($errors->has('ci'))
+        <span class="help-block">{{ $errors->first('ci') }}</span>
+      @endif
+    </div>
+  </div>
+  <div class="form-group{{ $errors->has('imei') ? ' has-error' : '' }}">
+    <label for="imei" class="col-md-4 control-label">IMEI</label>
+    <div class="col-md-6">
+      {!! Form::text('imei',  old('imei'), ['id'=>'imei', 'class'=>'form-control', 'placeholder'=>'IMEI']) !!}
+      @if ($errors->has('imei'))
+        <span class="help-block">{{ $errors->first('imei') }}</span>
+      @endif
+    </div>
+  </div>
+  <div class="form-group{{ $errors->has('unidad') ? ' has-error' : '' }}">
+    <label for="unidad" class="col-md-4 control-label">Unidad</label>
+    <div class="col-md-6">
+      {!! Form::text('unidad',  old('unidad'), ['id'=>'unidad', 'class'=>'form-control', 'placeholder'=>'Unidad']) !!}
+      @if ($errors->has('unidad'))
+        <span class="help-block">{{ $errors->first('unidad') }}</span>
+      @endif
+    </div>
+  </div>
+  <div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
+    <label for="cargo" class="col-md-4 control-label">Cargo</label>
+    <div class="col-md-6">
+      {!! Form::text('cargo',  old('cargo'), ['id'=>'cargo', 'class'=>'form-control', 'placeholder'=>'Cargo']) !!}
+      @if ($errors->has('cargo'))
+        <span class="help-block">{{ $errors->first('cargo') }}</span>
+      @endif
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="grupo" class="col-md-4 control-label">Grupo</label>
+    <div class="col-md-6">
+      {!! Form::select('grupo', ['1'=>'Administrador', '2'=>'Responsable', '3'=>'Usuario', '4'=>'Reportes'], null, ['id'=>'grupo', 'class'=>'form-control']) !!}
+    </div>
+  </div>
+                  <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                      <label for="name" class="col-md-4 control-label">Nombre de Usuario</label>
                       <div class="col-md-6">
-                        {!! Form::select('grupo_id', ['1'=>'Administrador', '2'=>'Contador', '3'=>'Reportes'], null, ['id'=>'grupo_id', 'class'=>'form-control']) !!}
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                      <label for="name" class="col-md-4 control-label">Usuario</label>
-                      <div class="col-md-6">
-                          {!! Form::text('name',  old('name'), ['id'=>'name', 'class'=>'form-control', 'placeholder'=>'nombreapellido']) !!}
-                          @if ($errors->has('name'))
-                              <span class="help-block">{{ $errors->first('name') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                      <label for="email" class="col-md-4 control-label">Correo electrónico</label>
-                      <div class="col-md-6">
-                          {!! Form::email('email',  old('email'), ['id'=>'email', 'class'=>'form-control', 'placeholder'=>'correo@correo.com']) !!}
-                          @if ($errors->has('email'))
-                              <span class="help-block">{{ $errors->first('email') }}</span>
+                          {!! Form::text('username',  old('name'), ['id'=>'username', 'class'=>'form-control', 'placeholder'=>'Nombre de Usuario']) !!}
+                          @if ($errors->has('username'))
+                              <span class="help-block">{{ $errors->first('username') }}</span>
                           @endif
                       </div>
                   </div>
@@ -46,90 +110,16 @@
                       </div>
                   </div>
 
-                  <h4>Datos de personales</h4>
-                  <hr>
-                  <div class="form-group{{ $errors->has('nombres') ? ' has-error' : '' }}">
-                      <label for="nombres" class="col-md-4 control-label">Nombres</label>
-                      <div class="col-md-6">
-                          {!! Form::text('nombres',  old('nombres'), ['id'=>'nombres', 'class'=>'form-control', 'placeholder'=>'Ingrese sus nombres']) !!}
-                          @if ($errors->has('nombres'))
-                              <span class="help-block">{{ $errors->first('nombres') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('apellidos') ? ' has-error' : '' }}">
-                      <label for="apellidos" class="col-md-4 control-label">Apellidos</label>
-                      <div class="col-md-6">
-                          {!! Form::text('apellidos',  old('apellidos'), ['id'=>'apellidos', 'class'=>'form-control', 'placeholder'=>'Ingrese sus apellidos']) !!}
-                          @if ($errors->has('apellidos'))
-                              <span class="help-block">{{ $errors->first('apellidos') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('ci') ? ' has-error' : '' }}">
-                      <label for="ci" class="col-md-4 control-label">Cédula de identidad</label>
-                      <div class="col-md-6">
-                          {!! Form::text('ci',  old('ci'), ['id'=>'ci', 'class'=>'form-control', 'placeholder'=>'Cédula de identidad']) !!}
-                          @if ($errors->has('ci'))
-                              <span class="help-block">{{ $errors->first('ci') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
-                      <label for="direccion" class="col-md-4 control-label">Dirección</label>
-                      <div class="col-md-6">
-                          {!! Form::text('direccion',  old('direccion'), ['id'=>'direccion', 'class'=>'form-control', 'placeholder'=>'Dirección de residencia']) !!}
-                          @if ($errors->has('direccion'))
-                              <span class="help-block">{{ $errors->first('direccion') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
-                      <label for="telefono" class="col-md-4 control-label">Teléfono</label>
-                      <div class="col-md-6">
-                          {!! Form::text('telefono',  old('telefono'), ['id'=>'telefono', 'class'=>'form-control', 'placeholder'=>'Numero de teléfono']) !!}
-                          @if ($errors->has('telefono'))
-                              <span class="help-block">{{ $errors->first('telefono') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('observacion') ? ' has-error' : '' }}">
-                      <label for="observacion" class="col-md-4 control-label">Cargo</label>
-                      <div class="col-md-6">
-                          {!! Form::text('observacion',  old('observacion'), ['id'=>'observacion', 'class'=>'form-control', 'placeholder'=>'Observación del usuario', 'list'=>'observacion-list']) !!}
-                          <datalist id="observacion-list">
-                            <option value="ADMINISTRADORA DE CLINICA">
-                            <option value="AUX. DE ADM. CLINICA">
-                            <option value="AUX. CONTABLE DE CLINICA">
-                            <option value="AUX. ENFERMERA DE CLINICA">
-                            <option value="CONTADOR">
-                            <option value="ENFERMERA DE CLINICA">
-                            <option value="FARMACEUTICO DE CLINICA">
-                            <option value="LABORATORISTA DE CLINICA">
-                          </datalist>
-                          @if ($errors->has('observacion'))
-                              <span class="help-block">{{ $errors->first('observacion') }}</span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
-                      <label for="estado" class="col-md-4 control-label">Estado</label>
-                      <div class="col-md-6">
-                          {!! Form::checkbox('estado', 'on', true, ['id'=>'estado', 'class'=>'form-control']) !!}
-                      </div>
-                  </div>
+
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
                           <button type="submit" class="btn btn-warning">
                               <i class="fa fa-btn fa-user"></i> Actualizar
                           </button>
-                          <a href="{{asset('/usuarios')}}" class="btn btn-primary">
+                          <a href="{{asset('/index.php/usuarios')}}" class="btn btn-primary">
                             <i class="fa fa-btn fa-times-circle"></i> Cancelar</a>
                       </div>
                   </div>
           {!! Form::close() !!}
-      </div>
-    </div>
-  </div>
-</div>
+
 @endsection
