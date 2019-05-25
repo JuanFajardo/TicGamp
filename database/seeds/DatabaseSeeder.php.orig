@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // $this->call(UsersTableSeeder::class);
+<<<<<<< HEAD
+        \DB::table('users')->insert([
+        'id'=>'1',
+
+        'username'=>'bett0',
+        'password'=> bcrypt('123'),
+        'unidad'=>'Unidad Sistemas',
+
+        'nombre'=>'Juan',
+        'paterno'=>'Fajardo',
+        'materno'=>'Canaza',
+        'ci'=>'6612330',
+        'imei'=>'000000',
+
+        'cargo'=>'Programador',
+        'grupo'=>'1'
+        ]);
+=======
+>>>>>>> bceb2ff5b97c40a8fc3adbcbff0e823f7e056572
+    }
+}

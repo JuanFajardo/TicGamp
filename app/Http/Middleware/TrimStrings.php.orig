@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Middleware;
+
+<<<<<<< HEAD
+use Illuminate\Foundation\Http\Middleware\TrimStrings as BaseTrimmer;
+
+class TrimStrings extends BaseTrimmer
+=======
+use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
+
+class TrimStrings extends Middleware
+>>>>>>> bceb2ff5b97c40a8fc3adbcbff0e823f7e056572
+{
+    /**
+     * The names of the attributes that should not be trimmed.
+     *
+     * @var array
+     */
+    protected $except = [
+        'password',
+        'password_confirmation',
+    ];
+}

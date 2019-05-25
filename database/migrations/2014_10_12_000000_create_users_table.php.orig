@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateUsersTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+<<<<<<< HEAD
+            $table->string('username');
+            $table->string('password');
+            $table->string('unidad');
+=======
+
+            $table->string('username');
+            $table->string('password');
+
+            $table->string('titulo');
+>>>>>>> bceb2ff5b97c40a8fc3adbcbff0e823f7e056572
+            $table->string('nombre');
+            $table->string('paterno');
+            $table->string('materno');
+            $table->string('ci');
+            $table->string('imei');
+            $table->string('cargo');
+<<<<<<< HEAD
+            $table->integer('grupo')->comment('1:Administrador 2:Responsable 3:Usuario 4:Reportes');
+            $table->timestamps();
+=======
+            $table->integer('grupo');
+
+            $table->timestamps();
+
+>>>>>>> bceb2ff5b97c40a8fc3adbcbff0e823f7e056572
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+}

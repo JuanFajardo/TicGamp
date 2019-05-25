@@ -1,0 +1,37 @@
+<nav class="navbar-default navbar-side" role="navigation">
+<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+<<<<<<< HEAD
+                <a @yield('menuTrabajo') href="{{asset('index.php/Trabajo')}}"><i class="fa fa-desktop"></i> Trabajos</a>
+            </li>
+            <li>
+                <a @yield('menuBien') href="{{asset('index.php/Bien')}}"><i class="fa fa-bar-chart-o"></i> Bienes </a>
+            </li>
+            <li>
+                <a @yield('menuPrestamo') href="{{asset('index.php/Prestamo')}}"><i class="fa fa-qrcode"></i> Prestamos </a>
+=======
+                <a @yield('menuProyecto') href="{{asset('index.php/Proyecto')}}"><i class="fa fa-desktop"></i> Trabajos</a>
+            </li>
+            <li>
+                <a @yield('menuBoleta') href="{{asset('index.php/Boleta')}}"><i class="fa fa-bar-chart-o"></i> Bienes </a>
+            </li>
+            <li>
+                <a @yield('menuCambio') href="{{asset('index.php/Cambio')}}"><i class="fa fa-qrcode"></i> Prestamos </a>
+>>>>>>> bceb2ff5b97c40a8fc3adbcbff0e823f7e056572
+            </li>
+            <li>
+                <a @yield('menuReporte') href="{{asset('index.php/Reporte')}}"><i class="fa fa-file"></i> Resportes</a>
+            </li>
+<<<<<<< HEAD
+
+            <li>
+                <a @yield('menuUsuario') href="{{asset('index.php/usuarios')}}"><i class="fa fa-user"></i> Usuarios</a>
+            </li>
+
+=======
+>>>>>>> bceb2ff5b97c40a8fc3adbcbff0e823f7e056572
+        </ul>
+    </div>
+</nav>
