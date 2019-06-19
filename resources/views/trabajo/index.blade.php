@@ -1,9 +1,9 @@
 @extends('gamp')
 
-@section('title') Usuario @endsection
-@section('ventana') Usuario @endsection
+@section('title') Trabajo @endsection
+@section('ventana') Trabajo @endsection
 
-@section('descripcion') creacion de un nuevo usuario @endsection
+@section('descripcion') listado de trabajos @endsection
 
 @section('titulo')
 <a href="{{asset('index.php/Trabajo')}}" class="btn btn-primary"> <i class="fa fa-desktop"></i> Volver </a>
