@@ -1,22 +1,22 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    <li class="nav-item @yield('menu')">
+    <li class="nav-item @yield('trabajo')">
       <a class="nav-link" href="{{ asset('/index.php/Trabajo') }}">
-        <i class="ti-home menu-icon"></i>
+        <i class="ti-desktop  menu-icon"></i>
         <span class="menu-title" accesskey="t"><u>T</u>rabajo</span>
       </a>
     </li>
 
-    <li class="nav-item @yield('buscar')">
+    <li class="nav-item @yield('bien')">
       <a class="nav-link" href="{{ asset('/index.php/Bien') }}">
-        <i class="ti-search  menu-icon"></i>
+        <i class="ti-clipboard  menu-icon"></i>
         <span class="menu-title" accesskey="b"><u>B</u>ienes</span>
       </a>
     </li>
 
     <li class="nav-item @yield('buscar')">
       <a class="nav-link" href="{{ asset('/index.php/Buscar') }}">
-        <i class="ti-search  menu-icon"></i>
+        <i class="ti-write menu-icon"></i>
         <span class="menu-title" accesskey="p"><u>P</u>restamos</span>
       </a>
     </li>
@@ -28,7 +28,7 @@
       </a>
     </li>
 
-    @if( trim(\Auth::user()->grupo) == "Administrador" ||  trim(\Auth::user()->grupo) == "Encargado" )
+    @if( trim(\Auth::user()->grupo) == "1")
     <li class="nav-item @yield('usuario')">
       <a class="nav-link" href="{{ asset('/index.php/usuarios') }}">
         <i class="ti-user menu-icon"></i>

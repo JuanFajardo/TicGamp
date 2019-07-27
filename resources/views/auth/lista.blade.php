@@ -1,22 +1,25 @@
 @extends('gamp')
 
-@section('title') Usuario @endsection
-@section('ventana') Usuario @endsection
+@section('title') Usuarios @endsection
 
-@section('descripcion') por nombre, paterno, materno y ci @endsection
 @section('titulo')
-<a href="{{asset('index.php/usuarios')}}" class="btn btn-primary"> <i class="fa fa-user"></i> Volver </a>
-<a href="{{url('usuarios/create')}}" class="btn btn-info " data-target=""> <li class="fa fa-plus"></li> Nuevo </a>
+  <h4> <i class="ti-user menu-icon"></i> Usuarios </h4>
+ @endsection
+
+@section('usuario')
+ active
 @endsection
 
-@section('menuUsuario')
- class="active-menu"
+@section('descripcion') Administracion de los usuario @endsection
+
+@section('boton')
+<a href="{{asset('index.php/usuarios')}}" class="btn btn-success  btn-icon-text btn-rounded" accesskey="v"> <i class="ti-arrow-left menu-icon"></i> <u>V</u>olver </a>
+<a   href="{{ url('usuarios/create') }}"  class="nuevo btn btn-primary btn-icon-text btn-rounded" accesskey="n"> <i class="ti-plus btn-icon-prepend"></i> <u>N</u>uevo </a>
 @endsection
 
 @section('cuerpo')
-
-  <table id="datosTabla" class="table datatable">
-    <thead>
+  <table class="table table-hover compact" id="datosTabla">
+    <thead style="background-color:#343a40; color:#fff;">
       <tr>
         <th>Nombres y Apellidos</th>
         <th>Usuario</th>
@@ -34,36 +37,23 @@
         <td>{{$usuario->unidad}} / {{$usuario->cargo}}</td>
         <td>{{$usuario->grupo}}</td>
         <td>{{$usuario->imei}}</td>
-        <td><a href="{{ url('usuarios/'.$usuario->id.'/edit') }}" style="color:#f0ad4e;"> <i class="fa fa-pencil" aria-hidden="true"></i>  </a></td>
+        <td><a href="{{ url('usuarios/'.$usuario->id.'/edit') }}" class="btn btn-warning btn-icon-text" > <i class="ti-pencil menu-icon" aria-hidden="true"></i>  </a></td>
       </tr>
       @endforeach
     </tbody>
+    <tfoot class="thead-dark">
+      <tr>
+        <th>Nombres y Apellidos</th>
+        <th>Usuario</th>
+        <th>Unidad / Cargo</th>
+        <th>Grupo</th>
+        <th>imei</th>
+        <th>Editar</th>
+      </tr>
+    </tfoot>
+
   </table>
 
-<!--<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Eliminar</h4>
-      </div>
-      <div class="modal-body">
-        <p>¿Esta seguro que desea eliminar este usuario: <strong>
-          @if(isset($usuario))
-            {{$usuario->nombres}}
-          @endif
-        </strong>?
-        </p>
-      </div>
-      <div class="modal-footer">
-        @if(isset($usuario))
-        <a type="button" class="btn btn-info" href="{{url('usuarios/'.$usuario->id)}}">Aceptar</a>
-        @endif
-        <a type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</a>
-      </div>
-    </div>
-  </div>
-</div>-->
 @endsection
 
 @section('js')
@@ -75,9 +65,9 @@
           "sEmtpyTable": "No ay registros",
           "decimal": ",",
           "thousands": ".",
-          "lengthMenu": "Mostrar _MENU_ datos por registros",
+          "lengthMenu": "Mostrar _MENU_  ",
           "zeroRecords": "No se encontro nada,  lo siento",
-          "info": "Mostrar paginas [_PAGE_] de [_PAGES_]",
+          "info": "  ",
           "infoEmpty": "No ay entradas permitidas",
           "search": "Buscar ",
           "infoFiltered": "(Busqueda de _MAX_ registros en total)",

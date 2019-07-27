@@ -31,16 +31,32 @@ class TrabajoController extends Controller
     }
 
     public function store(Request $request){
-      //return $request->all();
+
+      $funcionario = \App\Funcionario::where('funcionario', '=', $request->funcionario)->count();
+      if( !$funcionario ){
+        $dato = new \App\Funcionario;
+        $dato->funcionario = $request->funcionario;
+        $dato->save();
+      }
+
+      $unidad = \App\Unidad::where('unidad', '=', $request->unidad)->count();;
+      if( !$unidad ){
+        $dato = new \App\Unidad;
+        $dato->unidad = $request->unidad;
+        $dato->save();
+      }
+
       $request["usuario"] = \Auth::user()->username;
       $request["id_user"] = \Auth::user()->id;
       $request["firma"]   = "no";
       $request["sincro"]  = "SI";
       $request["estado"]  = "entregado";
+
+      $request["fecha"] = date('Y-m-d H:i:s', strtotime($request->fecha." ".date('H:i:s')));
+
       if(\Auth::user()->grupo != "2"){
         $request["asignadoA"]  = \Auth::user()->username;
         $request["asignadoPor"]  = \Auth::user()->username;
-
       }else{
         $request["asignadoA"]   = \Auth::user()->username;
         $request["asignadoPor"] = \Auth::user()->username;

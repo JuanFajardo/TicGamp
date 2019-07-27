@@ -11,7 +11,7 @@
     <title> Gobierno Autónomo Municipal de Potosí - Presupuesto  </title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet">
 </head>
 <body style="background-color: black;">
     <div id="app">
